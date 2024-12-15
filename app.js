@@ -34,10 +34,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _this = this;
 var pokemonListContainer = document.getElementById("pokemon-list");
 var pokemonDetailContainer = document.getElementById("pokemon-detail");
 var detailContent = document.getElementById("detail-content");
 var backButton = document.getElementById("back-button");
+var searchInput = document.getElementById("search-input");
+var searchButton = document.getElementById("search-button");
 // Fetch Pokémon List
 function fetchPokemonList() {
     return __awaiter(this, arguments, void 0, function (limit) {
@@ -110,4 +113,75 @@ function init() {
         });
     });
 }
+function searchPokemon(query) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, pokemonDetail;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!!query) return [3 /*break*/, 2];
+                    return [4 /*yield*/, fetchPokemonList(20)];
+                case 1: return [2 /*return*/, _a.sent()]; // Jika query kosong, kembalikan daftar Pokémon awal.
+                case 2: return [4 /*yield*/, fetch("https://pokeapi.co/api/v2/pokemon/".concat(query))];
+                case 3:
+                    response = _a.sent();
+                    if (!response.ok) return [3 /*break*/, 5];
+                    return [4 /*yield*/, response.json()];
+                case 4:
+                    pokemonDetail = _a.sent();
+                    return [2 /*return*/, [{
+                                id: pokemonDetail.id,
+                                name: pokemonDetail.name,
+                                image: pokemonDetail.sprites.front_default,
+                                types: pokemonDetail.types.map(function (t) { return t.type.name; }),
+                            }]];
+                case 5:
+                    alert("Pokémon not found");
+                    return [2 /*return*/, []]; // Jika Pokémon tidak ditemukan
+            }
+        });
+    });
+}
+// Event listener untuk tombol pencarian
+searchButton.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
+    var query, pokemonList;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                query = searchInput.value.trim().toLowerCase();
+                return [4 /*yield*/, searchPokemon(query)];
+            case 1:
+                pokemonList = _a.sent();
+                renderPokemonList(pokemonList); // Render hasil pencarian
+                return [2 /*return*/];
+        }
+    });
+}); });
+// Event listener untuk menangani input ketika menekan Enter
+searchInput.addEventListener("keypress", function (event) { return __awaiter(_this, void 0, void 0, function () {
+    var query, pokemonList;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!(event.key === "Enter")) return [3 /*break*/, 2];
+                query = searchInput.value.trim().toLowerCase();
+                return [4 /*yield*/, searchPokemon(query)];
+            case 1:
+                pokemonList = _a.sent();
+                renderPokemonList(pokemonList); // Render hasil pencarian
+                _a.label = 2;
+            case 2: return [2 /*return*/];
+        }
+    });
+}); });
+// Ambil elemen header untuk "Pokedex"
+var pokedexTitle = document.getElementById("pokedex-title");
+// Fungsi untuk kembali ke tampilan home
+function goback() {
+    // Menyembunyikan detail Pokémon dan menampilkan daftar Pokémon
+    pokemonDetailContainer.classList.add("hidden");
+    pokemonListContainer.classList.remove("hidden");
+}
+// Event listener untuk mengembalikan ke tampilan home saat judul "Pokedex" diklik
+pokedexTitle.addEventListener("click", goback);
 init();
