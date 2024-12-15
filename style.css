@@ -1,0 +1,173 @@
+/* Search Container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    position: sticky;
+    top: 0;
+    background-color: #121212;
+    z-index: 10;
+}
+
+#search-input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #ff3d3d;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s;
+}
+
+#search-button:hover {
+    background-color: #ff6f6f;
+}
+
+/* Rest of your CSS (no changes needed) */
+body {
+    font-family: 'Rubik', Arial, sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    background: linear-gradient(to right, #ff00ff, #ff6f61);
+    color: #fff;
+    padding: 1.5rem 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Main Container */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: #121212;
+}
+
+/* Card Styling */
+.card {
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+    transition: all 0.4s ease;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: linear-gradient(135deg, #ff00ff, #6a00f4);
+    box-shadow: 0 15px 30px rgba(255, 0, 255, 0.4);
+}
+
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    margin: 0.8rem 0;
+    color: #ff6f61;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.card p {
+    background: #ff6f61;
+    color: white;
+    margin: 0;
+    padding: 5px;
+    font-size: 0.9rem;
+    border-radius: 0 0 16px 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Detail Page */
+#pokemon-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #1e1e1e;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+    color: #fff;
+}
+
+#pokemon-detail h2 {
+    font-size: 2rem;
+    color: #ff6f61;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+#pokemon-detail img {
+    width: 250px;
+    height: auto;
+}
+
+#back-button {
+    background: linear-gradient(to right, #ff6f61, #ff00ff);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 25px;
+    margin-top: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(255, 0, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+#back-button:hover {
+    background: linear-gradient(to right, #ff00ff, #6a00f4);
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 85%;
+    }
+}
